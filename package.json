@@ -1,0 +1,14 @@
+{
+  "name": "redux",
+  "version": "1.0.0",
+  "description": "This is redux learning folder",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ajmat Kathat",
+  "license": "ISC",
+  "dependencies": {
+    "redux": "^4.2.1"
+  }
+}
