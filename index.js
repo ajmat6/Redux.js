@@ -1,7 +1,11 @@
 const redux = require('redux') // importing the redux library
 const createStore = redux.legacy_createStore // to create store
 
+// Type of the action is generally a string constraint:
 const BUY_CAKE = 'BUT_CAKE';
+const CAKE_RESTOCKED = 'CAKE_RESTOCKED';
+
+// Implementing Action Creators:
 
 function buyCake () // action creator function that returns an action
 {
@@ -10,6 +14,15 @@ function buyCake () // action creator function that returns an action
             info: 'First Redux action',
             quantity: 1
         }     
+}
+
+function restockCake(qty=1)
+{
+    return {
+        type: CAKE_RESTOCKED,
+        info: 'Action of cake restocking',
+        quantity: qty
+    }
 }
 
 // Implementing Reducers:
@@ -26,6 +39,11 @@ const reducer = (state = initialState, action) => {
             noOfCakes: state.noOfCakes - 1
         }
 
+        case CAKE_RESTOCKED: return {
+            ...state,
+            noOfCakes: state.noOfCakes + action.quantity // it means you are stocking as much cakes as you pass in the quantity
+        }
+
         default: return state
     }
 }
@@ -36,10 +54,17 @@ const store = createStore(reducer); // creating a store which accepts a reducer 
 
 console.log("Initial State", store.getState()); // Allowing access to the state via getState() function (2nd responsibility of the redux store)
 
-const unsubscribe = store.subscribe(() => console.log('Updated state', store.getState())) // Resgistering listeners via subscribe (4th responsibility of the redux store)
+const unsubscribe = store.subscribe(() => // Resgistering listeners via subscribe (4th responsibility of the redux store)
+    console.log('Updated state', store.getState())
+) 
 
 store.dispatch(buyCake()) // Updating the state via dispatch which accepts an action as a parameter (3rd responsibility of the redux store)
 store.dispatch(buyCake()) // Updating the state three times
 store.dispatch(buyCake())
 
-unsubscribe(); // 5th responsibility of the redux store
+store.dispatch(restockCake(3)); // restocking the cakes by 3
+
+unsubscribe(); // 5th responsibility of the redux store (unsubsribe to any changes in the store and after this if you change any values in the state it will not be listened)
+
+// store.dispatch(buyCake()) // This will not work as you have already unsubscribed to the changes in the store
+
