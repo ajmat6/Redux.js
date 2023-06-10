@@ -1,4 +1,5 @@
 const redux = require('redux')
+const produce = require('immer').produce // to user immer
 const createStore = redux.legacy_createStore
 
 const initialState = {
@@ -12,7 +13,7 @@ const initialState = {
 
 const STREET_UPDATE = 'STREET_UPDATE';
 
-function streetUpdate(street) // action creator
+function streetUpdate(street) // action creator , passing street as an argument
 {
     return {
         type: STREET_UPDATE,
@@ -22,13 +23,19 @@ function streetUpdate(street) // action creator
 
 const reducer = (state = initialState, action) => {
     switch(action.type) {
-        case STREET_UPDATE: return {
-            ...state,
-            address: {
-                ...state.address, // spreading state.address so that city and address remains unaffected
-                street: action.payload
-            }
-        }
+        case STREET_UPDATE:
+        //      return {
+        //     // nested State:
+        //     ...state,
+        //     address: {
+        //         ...state.address, // spreading state.address so that city and address remains unaffected
+        //         street: action.payload
+        //     }
+        // }
+
+        return produce(state, (draft) => {
+            draft.address.street = action.payload
+        })
 
         default: {
             return state
