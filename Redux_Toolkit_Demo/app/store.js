@@ -2,7 +2,8 @@ const configureStore = require('@reduxjs/toolkit').configureStore // to create s
 // const reduxLogger = require('redux-logger') // importing redux logger
 const cakeReducer = require('../features/cake/cakeSlice') // importing reducer from the features
 const icecreamReducer = require('../features/icecream/icecreamSlice'); // importing icecream reducer from the reducer
-const { getDefaultMiddleware } = require('@reduxjs/toolkit');
+const { getDefaultMiddleware } = require('@reduxjs/toolkit'); // get defatult Middleware contains a list of default middlewares int the configureStore
+const userReducer = require('../features/user/userSlice') // importing userSlice module
 
 // const logger = reduxLogger.createLogger();
 
@@ -10,7 +11,8 @@ const store = configureStore({
     // key of reducer that is an object of the reducer: it is like combineReducer function in redux
     reducer: {
         cake: cakeReducer,
-        icecream: icecreamReducer
+        icecream: icecreamReducer,
+        user: userReducer
     },
 
     // middleware recieves getDefaultMiddleware as an argument which is a list of default middleware in the configureStore function and we are concatinating logger middleware into that list.
