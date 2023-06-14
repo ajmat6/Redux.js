@@ -1,4 +1,4 @@
-const createSlice = require('@reduxjs/toolkit').createSlice // imorting the createSlice function
+import { createSlice } from '@reduxjs/toolkit' // imorting the createSlice package
 
 // Initial State:
 const initialState = {
@@ -24,5 +24,5 @@ const cakeSlice = createSlice({ // invoking createSlice function and assigning i
     }
 }); 
 
-module.exports = cakeSlice.reducer // exporting the reducers
-module.exports.cakeActions = cakeSlice.actions // exporting the action creators made by cakeSlice reducer
+export default cakeSlice.reducer // exporting the reducers
+export const { ordered, restocked } = cakeSlice.actions // exporting the action creators made by cakeSlice reducer by using destructuring 

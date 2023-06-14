@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'; // importing configureStore 
-import logger from 'logger'
+// import logger from 'logger'
 import cakeReducer from '../features/cake/cakeSlice'
 import icecreamReducer from '../features/icecream/icecreamSlice'
-import { getDefaultMiddleware } from '@reduxjs/toolkit'; // get defatult Middleware contains a list of default middlewares int the configureStore
+// import { getDefaultMiddleware } from '@reduxjs/toolkit'; // get defatult Middleware contains a list of default middlewares int the configureStore
 import userReducer from '../features/user/userSlice'
 
 // const logger = logger.createLogger();
