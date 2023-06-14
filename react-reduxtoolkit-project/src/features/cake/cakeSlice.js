@@ -25,4 +25,4 @@ const cakeSlice = createSlice({ // invoking createSlice function and assigning i
 }); 
 
 module.exports = cakeSlice.reducer // exporting the reducers
-module.exports.cakeActions = cakeSlice.actions // exporting the action creators made by cakeSlice reducer as cakeActions
+module.exports.cakeActions = cakeSlice.actions // exporting the action creators made by cakeSlice reducer
